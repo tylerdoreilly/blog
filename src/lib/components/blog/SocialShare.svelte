@@ -46,8 +46,9 @@
         padding:0px;
     }
 
-    .recent-posts__list-item{
+    .social-share__list-item{
         flex-direction:row;
+        margin-top:0px;
     }
 
     .post-title{

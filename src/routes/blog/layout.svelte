@@ -12,11 +12,13 @@
     import Aside from '$lib/components/Aside.svelte'
     import RecentPosts from '$lib/components/blog/RecentPosts.svelte'  
     import SocialShare from '$lib/components/blog/SocialShare.svelte'
-
+    import Tags from '$lib/components/blog/Tags.svelte'
+    import PostImg from '$lib/components/blog/PostImg.svelte'
     export let title
     export let date
     export let updated
     export let categories
+    export let excerpt
     export let coverImage 
     $: isFullPath = $fullPath;
 
@@ -29,30 +31,43 @@
 
 <div class="post-wrapper">
 
-  <!-- <div class="post-header">
-    <div class="post-header-left">left</div>
-    <div class="post-header-right">right</div>
-  </div> -->
-
-
-  <div class="sidebar">
-    <Aside>
-      <RecentPosts />
-    </Aside>
-
-    <Aside>
-      <SocialShare url={ isFullPath} postTitle={title}/> 
-    </Aside>
+  <div class="post-header">
+    <div class="post-header-left">
+      <PostHeader title={title} pub={date} updated={updated} excerpt={excerpt} img={coverImage} />   
+    </div>
+    <div class="post-header-right">
+      <PostImg alt={title} img={coverImage}/>
+    </div>
   </div>
 
-  <article class="post">
-    <PostHeader title={title} pub={date} updated={updated} categories={categories} img={coverImage} />   
-    <slot />
-  </article> 
+  <article class="post-content">
+    <div class="sidebar"> 
+      <Aside>
+        <RecentPosts />
+      </Aside>
+
+     
+
+      <Aside>
+        <Tags tags={categories} />
+      </Aside>
+      <Aside>
+        <SocialShare url={ isFullPath} postTitle={title}/> 
+      </Aside>
+     
+    </div>
+  
+    <article class="post">
+      
+      <slot />
+    </article> 
+  </article>
+
+ 
   
 </div>
  
-<!-- <style>
+<style>
   .post-wrapper{
      display:flex;
      flex-direction:column-reverse;
@@ -86,7 +101,7 @@
    
    @media all and (min-width: 672px) {
      .post{
-       max-width:42rem;
+       max-width:44rem;
        margin-left: auto;
        margin-right: auto;
      }
@@ -106,11 +121,11 @@
      .post-header{
       display:flex;
       flex-direction:row;
-      background:blue;
       width:100%;
       align-items:center;
       flex-grow: 1;
       flex-basis:auto;
+      margin-bottom:120px;
      }
 
      .post-header-left{
@@ -120,27 +135,51 @@
      }
 
      .post-header-right{
-      flex:30%;
+      flex:35%;
        flex-grow: 0;
        flex-shrink: 1;
+     }
+
+     .img-wrapper{
+      width:300px;
+      height:400px;
+      overflow:hidden;
+      border-radius:27% 73% 76% 24% / 51% 39% 61% 49%;
+     }
+
+     .imgTest{
+      width:600px;
+     }
+
+     .post-content{
+      display:flex;
+      flex-direction:row;
+      justify-content: flex-start;
+      width:1460px;
+      margin-left: auto;
+       margin-right: auto;
+      flex-grow: 1;
+      flex-basis:auto;
      }
 
      .post{
          margin-left: 0;
          margin-right: 0px;
+         margin-top:20px;
      }
    }
 
    @media all and (min-width: 1738px) {
      .sidebar{
-       flex:30%;
+       flex:32%;
        flex-grow: 0;
        flex-shrink: 1;
-       margin-top:50px;
+       margin-top:0px;
+       align-items:flex-end;
      }   
    }
-</style> -->
-<style>
+</style> 
+<!-- <style>
    .post-wrapper{
       display:flex;
       flex-direction:column-reverse;
@@ -204,4 +243,4 @@
         margin-top:50px;
       }   
     }
-</style>
+</style> -->

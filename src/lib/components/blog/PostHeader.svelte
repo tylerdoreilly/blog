@@ -1,30 +1,24 @@
 <script>
-    import Tags from '$lib/components/blog/Tags.svelte'  
     export let title;
     export let pub;
     export let updated;
-    export let categories;
+    export let excerpt;
     export let img;
 </script>
 
 <div class="post-header">
-    <!-- <div class="post-header__img">
-        <img class="imgTest" src={img} alt="{title}">
-    </div> -->
-    <h1 class="post-header__title">{title}</h1>
     <div class="post-header__meta">
         <div class="meta">
-            <b>Published:</b> {pub}<br>
-            <b>Updated:</b> {updated}<br>
+            {pub}
         </div>    
     </div>
-    <div class="post-header__categories">
-        <Tags tags={categories} />
-    </div>
+    <h1 class="post-header__title">{title}</h1>
+    <p class="post-header__excerpt">{excerpt}</p>
+    <p class="type">Music</p>
 </div>
 
 
-<style>
+<style lang="scss">
     .post-header{
         display:flex;
         flex-direction:column;
@@ -49,21 +43,30 @@
         font-weight:300;
         line-height: 1.2;
         margin-bottom:40px;
+        margin-top:10px;
     }
 
+    .post-header__excerpt{
+        color:$txt-color-muted;
+    }
 
     .post-header__meta {
         display:flex;
         flex-direction:row;
         justify-content: flex-start;
-        margin-bottom:35px;
+        margin-bottom:0px;
     }
 
     .meta{
         border-top:1.5px solid #fff;
-        font-size:16px;
+        font-size:18px;
         padding-top:8px;
         line-height:25px;
+        margin-left:4px;
+    }
+
+    .type{
+        color:$lazer-green;
     }
 
     .post-header__categories{
