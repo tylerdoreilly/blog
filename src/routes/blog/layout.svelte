@@ -33,14 +33,29 @@
 
   <div class="post-header">
     <div class="post-header-left">
-      <PostHeader title={title} pub={date} updated={updated} excerpt={excerpt} img={coverImage} />   
+      <PostHeader title={title} pub={date} updated={updated} excerpt={excerpt} img={coverImage} tags={categories}/>   
     </div>
     <div class="post-header-right">
       <PostImg alt={title} img={coverImage}/>
     </div>
   </div>
-
-  <article class="post-content">
+  <div class="test-wrapper">
+    <div class="test-left">
+      <Aside>
+        <RecentPosts />
+      </Aside>
+      <Aside>
+        <Tags tags={categories} />
+      </Aside>
+      <Aside>
+        <SocialShare url={ isFullPath} postTitle={title}/> 
+      </Aside>
+    </div>
+    <div class="test-right">
+      <slot />
+    </div>
+  </div>
+  <!-- <article class="post-content">
     <div class="sidebar"> 
       <Aside>
         <RecentPosts />
@@ -59,9 +74,9 @@
   
     <article class="post">
       
-      <slot />
+     <slot /> 
     </article> 
-  </article>
+  </article> -->
 
  
   
@@ -75,7 +90,7 @@
      flex-grow: 1;
      width: 100%;
      flex-basis:auto;
-   }
+  }
   
 
    .post{
@@ -101,7 +116,9 @@
    
    @media all and (min-width: 672px) {
      .post{
-       max-width:44rem;
+       max-width:46rem;
+       flex-grow: 0;
+       flex-shrink: 1;
        margin-left: auto;
        margin-right: auto;
      }
@@ -111,8 +128,7 @@
      .post-wrapper{
        display:flex;
        flex-direction:column;
-       justify-content: flex-start;
-      
+       justify-content: flex-start;     
        flex-grow: 1;
        width: 100%;
        flex-basis:auto;
@@ -140,26 +156,46 @@
        flex-shrink: 1;
      }
 
-     .img-wrapper{
-      width:300px;
-      height:400px;
-      overflow:hidden;
-      border-radius:27% 73% 76% 24% / 51% 39% 61% 49%;
-     }
-
-     .imgTest{
-      width:600px;
-     }
-
      .post-content{
       display:flex;
       flex-direction:row;
-      justify-content: flex-start;
-      width:1460px;
+      justify-content: center;
+      width:100%;
+      align-items:flex-start;
       margin-left: auto;
-       margin-right: auto;
+      margin-right: auto;
       flex-grow: 1;
       flex-basis:auto;
+     }
+
+     .test-wrapper{
+      display:flex;
+      flex-direction:row;
+      justify-content:flex-start;
+      /* background:blue; */
+      width:100%;
+      max-width:1450px;
+      margin-left: auto;
+       margin-right: auto;
+       gap:80px;
+     }
+
+     .test-left{
+      flex:30%;
+      flex-grow: 0;
+      /* background:red; */
+     }
+     .test-right{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex:70%;
+      max-width:45rem;
+      margin-top: 20px;
+      flex-grow: 0;
+      flex-shrink: 1;
+      padding-right:140px;
+      /* background:green; */
      }
 
      .post{
@@ -171,7 +207,7 @@
 
    @media all and (min-width: 1738px) {
      .sidebar{
-       flex:32%;
+       flex:30%;
        flex-grow: 0;
        flex-shrink: 1;
        margin-top:0px;

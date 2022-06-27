@@ -11,8 +11,8 @@
         display:flex;
         align-items:center;
         justify-content:center;
-        background:$dark-sky-blue;
-        color:$bdazzled-blue;
+        background:$gunmetal;
+        color:var(--text-muted);
         padding:4px 6px;
         font-size:14px;
     }

@@ -14,14 +14,14 @@
         {#each posts as post}
             <li class="recent-posts__list-item">
                 <div class="post-title">{post.meta.title}</div>
-                <div>{post.meta.date}</div>
+                <time class="post-date" datetime="{post.meta.date}">{post.meta.date}</time>
             </li>
         {/each}
     </ul>
   
 </div>
 
-<style>
+<style lang="scss">
     .recent-posts{
         display:flex;
         flex-direction:column;
@@ -37,13 +37,21 @@
         flex-direction:column;
         list-style-type: none;  
         padding:0px;
+        gap:15px;
     }
 
     .recent-posts__list-item{
+        display:flex;
         flex-direction:column;
+       
     }
 
     .post-title{
         font-size:1.2rem;
+    }
+
+    .post-date{
+        color:$txt-color-muted;
+        font-size:.1.1rem;
     }
 </style>

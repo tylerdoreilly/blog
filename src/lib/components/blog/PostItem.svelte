@@ -39,14 +39,14 @@
       h2{
         margin:0px 0px 20px 0px;
         font-size:40px;
-        color:#fff;
+        color:var(--text-primary);
         font-family: 'Literata', serif;
         font-weight:300;
         line-height:65px;
         cursor:pointer;
 
         a{
-          color:$white;
+          color:var(--text-primary);
           border-bottom: 3px solid #01ffc7;
         }
       }
